@@ -1,0 +1,2 @@
+# QlikSenseExtension-EchartsExample
+在Qliksense的Extension中使用Echarts定制图表的简单使用实例
