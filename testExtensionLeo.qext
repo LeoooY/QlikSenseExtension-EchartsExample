@@ -1,0 +1,1 @@
+{"name":"testExtensionLeo","description":"Leo test Qlik Extension","type":"visualization","version":"1.0.0","icon":"pie-chart","author":"Leo","homepage":"","keywords":"qlik-sense, visualization","license":"","preview":"","repository":"","dependencies":{"qlik-sense":">=3.0.x"}}
