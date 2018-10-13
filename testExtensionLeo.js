@@ -42,7 +42,8 @@ define([
 							qHeight: 100
 						}
 					]
-				}
+				},
+				selectionMode : "CONFIRM"
 			},
 			
 			//渲染函数，$element作为渲染html的对象
@@ -69,8 +70,26 @@ define([
 					console.log( hc.qDimensionInfo[i].qFallbackTitle) ;
 							}
 							
-							
-				//每次拖拽会重新渲染，在此避免重复渲染多个							
+				var dataset=hc.qDataPages[0].qMatrix;
+				var dLength=dataset.length;
+				console.log("数据集：",dataset);
+				console.log("数组长度为",dLength);
+				
+				
+				//
+				var dSetName=[];
+				var dSetVal=[];
+				var dSetData=[];
+				for(var d in dataset){
+					dSetName[d]=dataset[d][0].qText;
+					dSetVal[d]=dataset[d][1].qText;
+					
+					
+					dSetData[d]={value:dSetVal[d],name:dSetName[d]};
+				}
+				console.log("数据维度名称：",dSetName);
+				console.log("数据对象：",dSetData);
+				//每次拖拽会重新渲染，在此避免重复渲染多个	-lazyway						
                 $element.empty();
 				
 				
@@ -101,7 +120,7 @@ define([
 
                 var option = {
                     title: {
-                        text: '某站点用户访问来源',
+                        text: '测试echarts-pie',
                         subtext: '纯属虚构',
                         x: 'center'
                     },
@@ -112,21 +131,23 @@ define([
                     legend: {
                         orient: 'vertical',
                         left: 'left',
-                        data: ['上市', 'B', 'IPO', '天使轮', 'A']
+                        //data: [dataset[0][0].qText, dataset[1][0].qText, dataset[2][0].qText, dataset[3][0].qText, dataset[4][0].qText]
+						data: dSetName
                     },
                     series: [
                         {
-                            name: '访问来源',
+                            name: '收入',
                             type: 'pie',
                             radius: '55%',
                             center: ['50%', '60%'],
-                            data: [
-                                { value: 335, name: '上市' },
-                                { value: 310, name: 'B' },
-                                { value: 234, name: 'IPO' },
-                                { value: 135, name: '天使轮' },
-                                { value: 1548, name: 'A' }
-                            ],
+                            //data: [
+                            //    { value: dataset[0][1].qText, name: dataset[0][0].qText },
+                            //    { value: dataset[1][1].qText, name: dataset[1][0].qText},
+                            //    { value: dataset[2][1].qText, name: dataset[2][0].qText },
+                            //    { value: dataset[3][1].qText, name: dataset[3][0].qText },
+                            //    { value: dataset[4][1].qText, name: dataset[4][0].qText }
+                            //],
+							data: dSetData,
                             itemStyle: {
                                 emphasis: {
                                     shadowBlur: 10,
